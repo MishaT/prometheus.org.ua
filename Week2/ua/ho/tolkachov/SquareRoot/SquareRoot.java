@@ -3,9 +3,9 @@ package ua.ho.tolkachov.SquareRoot;
 public class SquareRoot {
 
     public static void main(String[] args) {
-        double a = 0;
-        double b = 10;
-        double c = 0;
+        double a = 3;
+        double b = 2.5;
+        double c = -0.5;
 
         String roots;
         
