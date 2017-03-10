@@ -53,6 +53,7 @@ public class SquareRoot {
         if ((input == null)||Double.isNaN(input)) {
             return "";
         } else {
+            input = input + 0.0;
             return input.toString();
         }
     }

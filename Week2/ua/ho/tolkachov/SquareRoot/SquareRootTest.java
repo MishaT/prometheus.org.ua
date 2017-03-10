@@ -13,7 +13,7 @@ public class SquareRootTest {
         assertEquals("(0, 10, 0)", "x1=0.0\nx2=0.0", SquareRoot.quadraticEquation(0, 10, 0));
         assertEquals("(1, 1.1, 0.1)", "x1=-0.09999999999999998\nx2=-1.0", SquareRoot.quadraticEquation(1, 1.1, 0.1));
         assertEquals("(0, 0, 0)", "x1=\nx2=", SquareRoot.quadraticEquation(0, 0, 0));
-        assertEquals("(3, -18, 27)", "x1=\nx2=", SquareRoot.quadraticEquation(3, -18, 27));
+        assertEquals("(3, -18, 27)", "x1=3.0\nx2=3.0", SquareRoot.quadraticEquation(3, -18, 27));
     }
 
 }
