@@ -1,0 +1,9 @@
+.metadata
+RemoteSystemsTempFiles
+.classpath
+.project
+*.class
+*.java~
+.settings
+/bin/
+.recommenders
