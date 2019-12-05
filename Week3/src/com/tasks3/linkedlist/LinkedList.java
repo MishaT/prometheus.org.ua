@@ -4,14 +4,14 @@ package com.tasks3.linkedlist;
 public class LinkedList {
     private int listCount;
     private Node headNode;
-	
-	public LinkedList() {
+    
+    public LinkedList() {
         headNode = new Node();
         headNode.setData(null);
         listCount = 0;
-	}
+    }
 
-	public void add(Integer data) {
+    public void add(Integer data) {
         Node newNode = new Node();
         Node currentNode = headNode;
         newNode.setData(data);
@@ -20,9 +20,9 @@ public class LinkedList {
         }
         currentNode.setNext(newNode);
         listCount++;
-	}
+    }
 
-	public Integer get(int index) {
+    public Integer get(int index) {
         if (index < 0 || index >= size()) {
             return null;
         }
@@ -31,9 +31,9 @@ public class LinkedList {
             current = current.getNext();
         }
         return current.getData();
-	}
+    }
 
-	public boolean delete(int index) {
+    public boolean delete(int index) {
         if (index < 0 || index > size()) {
             return false;
         }
@@ -44,10 +44,10 @@ public class LinkedList {
         current.setNext(current.getNext().getNext());
         listCount--;
         return true;
-	}
+    }
 
-	public int size() {
+    public int size() {
         return listCount;
-	}
+    }
 }   
       
