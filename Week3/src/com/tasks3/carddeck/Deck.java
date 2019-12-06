@@ -56,8 +56,8 @@ public class Deck {
     // SPADES 7, ..., CLUBS 6, ..., CLUBS Ace і так далі до HEARTS Ace
     public Card drawOne() {
         if (hasNext()) {
-            Card card = cards.get(0);
-            cards.remove(0);
+            Card card = cards.get(cards.size() - 1);
+            cards.remove(cards.size() - 1);
             return card;
         } else
             return null;
