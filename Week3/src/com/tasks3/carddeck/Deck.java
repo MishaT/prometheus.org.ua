@@ -1,30 +1,65 @@
-package com.tasks3.carddeck;
+п»їpackage com.tasks3.carddeck;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Deck {
 
-    // Перемішує колоду у випадковому порядку
+    private List<Card> cards = new LinkedList<Card>();
+
+    // creates a card deck of 36 cards
+    public Deck() {
+        cards.clear();
+
+        for (Suit suit : Suit.values) {
+            for (Rank rank : Rank.values) {
+                cards.add(new Card(rank, suit));
+            }
+        }
+    }
+
+    // РџРµСЂРµРјС–С€СѓС” РєРѕР»РѕРґСѓ Сѓ РІРёРїР°РґРєРѕРІРѕРјСѓ РїРѕСЂСЏРґРєСѓ
     public void shuffle() {
+        Collections.shuffle(cards);
     }
 
     /*
-     * * Впорядкування колоди за мастями та значеннями Порядок сотрування:
-     * Спочатку всі карти з мастю HEARTS, потім DIAMONDS, CLUBS, SPADES для
-     * кожної масті порядок наступний: Ace,King,Queen,Jack,10,9,8,7,6 Наприклад
+     * * Р’РїРѕСЂСЏРґРєСѓРІР°РЅРЅСЏ РєРѕР»РѕРґРё Р·Р° РјР°СЃС‚СЏРјРё С‚Р° Р·РЅР°С‡РµРЅРЅСЏРјРё РџРѕСЂСЏРґРѕРє СЃРѕС‚СЂСѓРІР°РЅРЅСЏ:
+     * РЎРїРѕС‡Р°С‚РєСѓ РІСЃС– РєР°СЂС‚Рё Р· РјР°СЃС‚СЋ HEARTS, РїРѕС‚С–Рј DIAMONDS, CLUBS, SPADES РґР»СЏ
+     * РєРѕР¶РЅРѕС— РјР°СЃС‚С– РїРѕСЂСЏРґРѕРє РЅР°СЃС‚СѓРїРЅРёР№: Ace,King,Queen,Jack,10,9,8,7,6 РќР°РїСЂРёРєР»Р°Рґ
      * HEARTS Ace HEARTS King HEARTS Queen HEARTS Jack HEARTS 10 HEARTS 9 HEARTS
-     * 8 HEARTS 7 HEARTS 6 І так далі для DIAMONDS, CLUBS, SPADES
+     * 8 HEARTS 7 HEARTS 6 Р† С‚Р°Рє РґР°Р»С– РґР»СЏ DIAMONDS, CLUBS, SPADES
      */
     public void order() {
+        cards.sort(new Comparator<Card>() {
+            @Override
+            public int compare(Card c1, Card c2) {
+                return 100*java.util.Arrays.asList(Suit.values).indexOf(c1.getSuit()) -
+                        100 * java.util.Arrays.asList(Suit.values).indexOf(c2.getSuit())
+                        + java.util.Arrays.asList(Rank.values).indexOf(c1.getRank())
+                        - java.util.Arrays.asList(Rank.values).indexOf(c2.getRank());
+
+            }
+        });
     }
 
-    // Повертає true у випадку коли в колоді ще доступні карти
+    // РџРѕРІРµСЂС‚Р°С” true Сѓ РІРёРїР°РґРєСѓ РєРѕР»Рё РІ РєРѕР»РѕРґС– С‰Рµ РґРѕСЃС‚СѓРїРЅС– РєР°СЂС‚Рё
     public boolean hasNext() {
-        return false;
+        return cards.size() > 0;
     }
 
-    // "Виймає" одну карту з колоди, коли буде видано всі 36 карт повертає null
-    // Карти виймаються з "вершини" колоди. Наприклад перший виклик видасть
-    // SPADES 6 потім
-    // SPADES 7, ..., CLUBS 6, ..., CLUBS Ace і так далі до HEARTS Ace
+    // "Р’РёР№РјР°С”" РѕРґРЅСѓ РєР°СЂС‚Сѓ Р· РєРѕР»РѕРґРё, РєРѕР»Рё Р±СѓРґРµ РІРёРґР°РЅРѕ РІСЃС– 36 РєР°СЂС‚ РїРѕРІРµСЂС‚Р°С” null
+    // РљР°СЂС‚Рё РІРёР№РјР°СЋС‚СЊСЃСЏ Р· "РІРµСЂС€РёРЅРё" РєРѕР»РѕРґРё. РќР°РїСЂРёРєР»Р°Рґ РїРµСЂС€РёР№ РІРёРєР»РёРє РІРёРґР°СЃС‚СЊ
+    // SPADES 6 РїРѕС‚С–Рј
+    // SPADES 7, ..., CLUBS 6, ..., CLUBS Ace С– С‚Р°Рє РґР°Р»С– РґРѕ HEARTS Ace
     public Card drawOne() {
-        return null;
+        if (hasNext()) {
+            Card card = cards.get(0);
+            cards.remove(0);
+            return card;
+        } else
+            return null;
     }
 }

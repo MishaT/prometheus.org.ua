@@ -1,8 +1,8 @@
 package com.tasks3.carddeck;
 
-public class Card {
-    private Rank rank;
-    private Suit suit;
+public final class Card {
+    private final Rank rank;
+    private final Suit suit;
 
     public Card(Rank rank, Suit suit) {
         this.rank = rank;
@@ -13,15 +13,19 @@ public class Card {
         return rank;
     }
 
-    public void setRank(Rank rank) {
-        this.rank = rank;
-    }
-
     public Suit getSuit() {
         return suit;
     }
 
-    public void setSuit(Suit suit) {
-        this.suit = suit;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Card objCard = (Card) obj;
+        return rank.equals(objCard.rank) && suit.equals(objCard.suit);
     }
 }
